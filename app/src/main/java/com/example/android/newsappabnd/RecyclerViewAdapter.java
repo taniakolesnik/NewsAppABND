@@ -6,11 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +20,13 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
-    public static final String LOG_DATA = RecyclerViewAdapter.class.getName();
+    public static final String LOG_TAG = RecyclerViewAdapter.class.getName();
 
 
     private LayoutInflater layoutInflater;
-    private List<Cat> mData;
+    private List<NewsStory> mData;
 
-    // CONSTRUCTOR FOR RecyclerViewAdapter
-    public RecyclerViewAdapter(Context context, List<Cat> data) {
+    public RecyclerViewAdapter(Context context, List<NewsStory> data) {
         this.layoutInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -64,8 +60,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
-        Cat item = mData.get(position);
-        holder.textView.setText(item.getCat());
+        NewsStory item = mData.get(position);
+        holder.textView.setText(item.getNewsStory());
     }
 
     /**
