@@ -31,7 +31,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mData = data;
     }
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.row_text_view) TextView textView;
 

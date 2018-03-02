@@ -2,6 +2,8 @@ package com.example.android.newsappabnd;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.util.Log;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,8 @@ import java.util.List;
  */
 
 public class NewsLoader extends AsyncTaskLoader<List<NewsStory>> {
+
+    public static final String LOG_TAG = NewsLoader.class.getName();
 
     private String mUrl;
 
@@ -28,6 +32,7 @@ public class NewsLoader extends AsyncTaskLoader<List<NewsStory>> {
             return null;
         }
         List<NewsStory> news = FetchNews.fetchNewsData(mUrl);
+        Log.i(LOG_TAG, "news " + news);
         return news;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.android.newsappabnd;
 
 
+import android.app.LoaderManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -31,7 +32,6 @@ public class FetchNews {
     }
 
     public static List<NewsStory> fetchNewsData (String urlString){
-
         String jsonReply = "";
         URL url = createURL(urlString);
         try {
@@ -74,7 +74,6 @@ public class FetchNews {
                 inputStream = httpURLConnection.getInputStream();
                 jsonReply = readFromInput(inputStream);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -101,15 +100,14 @@ public class FetchNews {
             JSONObject rootJsonObject = jsonObject.getJSONObject("response");
             JSONArray resultsJsonArray = rootJsonObject.getJSONArray("results");
             for (int i = 0; i < resultsJsonArray.length(); i++){
-                String webTitle = resultsJsonArray.getString(i);
+                JSONObject newsItem = resultsJsonArray.getJSONObject(i);
+                String webTitle = newsItem.getString("webTitle");
                 news.add(new NewsStory(webTitle));
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
+        Log.i(LOG_TAG, "news " + news);
         return news;
     }
 
