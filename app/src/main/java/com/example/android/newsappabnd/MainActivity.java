@@ -10,6 +10,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,11 @@ public class MainActivity extends AppCompatActivity
     public static final int LOADER_ID = 1;
 
      @BindView(R.id.main_RecyclerView) RecyclerView mainRecyclerView;
+     @BindView(R.id.main_ProgressBar) ProgressBar progressBar;
+     @BindView(R.id.main_emptyTextView) TextView emptyTextView;
+
+     //TODO add network check before lunching loader
+     //TODO add EmptyScreen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +58,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(android.content.Loader<List<NewsStory>> loader, List<NewsStory> data) {
-        recyclerViewAdapter.updateAdapter(data);
+        progressBar.setVisibility(View.GONE);
+        Log.i("MainActivity", "data " );
+        if (data.isEmpty()) {
+            mainRecyclerView.setVisibility(View.GONE);
+            emptyTextView.setVisibility(View.VISIBLE);
+        }
+        else {
+            recyclerViewAdapter.updateAdapter(data);
+        }
     }
 
     @Override

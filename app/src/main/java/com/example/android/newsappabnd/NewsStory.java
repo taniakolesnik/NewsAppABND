@@ -6,6 +6,8 @@ package com.example.android.newsappabnd;
 
 public class NewsStory {
 
+    //TODO add date. author
+
     private String mNewsStory;
     private String mSectionName;
 

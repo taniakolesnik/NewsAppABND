@@ -28,6 +28,13 @@ public class FetchNews {
     private FetchNews() {}
 
     public static List<NewsStory> fetchNewsData (String urlString){
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         String jsonReply = "";
         URL url = createURL(urlString);
         try {
