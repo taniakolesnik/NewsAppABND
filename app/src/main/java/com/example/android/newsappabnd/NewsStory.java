@@ -12,8 +12,6 @@ import java.util.Locale;
 
 public class NewsStory {
 
-    //TODO add date. author
-
     private String mNewsStory;
     private String mSectionName;
     private String mPublicationDate;

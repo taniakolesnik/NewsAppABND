@@ -34,7 +34,7 @@ public class NewsLoader extends AsyncTaskLoader<List<NewsStory>> {
         if (mUrl == null) {
             return null;
         }
-        List<NewsStory> news = FetchNews.fetchNewsData(mUrl);
+        List<NewsStory> news = FetchNews.fetchNewsData(mUrl, getContext());
         return news;
     }
 }

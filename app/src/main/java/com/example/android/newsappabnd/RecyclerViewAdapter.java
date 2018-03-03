@@ -42,7 +42,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      *
      * @return new ViewHolder
      */
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.row_layout, parent, false);
@@ -53,7 +52,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * This method is called for each ViewHolder to bind it to the adapter.
      * This is where we will pass our data to our ViewHolder.
      */
-
     @Override
     public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
         NewsStory item = mData.get(position);
@@ -64,7 +62,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     /**
      * This method returns the size of the collection that contains the items we want to display
-     *
      * @return number of items to be listed
      */
     @Override
@@ -82,7 +79,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             ButterKnife.bind(this, itemView);
         }
     }
-
-
 }
 

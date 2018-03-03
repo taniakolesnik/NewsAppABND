@@ -1,15 +1,16 @@
 package com.example.android.newsappabnd;
 
 import android.app.LoaderManager;
-import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,21 +32,26 @@ public class MainActivity extends AppCompatActivity
      @BindView(R.id.main_ProgressBar) ProgressBar progressBar;
      @BindView(R.id.main_emptyTextView) TextView emptyTextView;
 
-     //TODO add network check before lunching loader
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isConnected()){
+                getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
+            }
+            else {
+                progressBar.setVisibility(View.GONE);
+                emptyTextView.setText(R.string.message_noInternetConnection);
+                emptyTextView.setVisibility(View.VISIBLE);
+            }
+
         recyclerViewAdapter = new RecyclerViewAdapter(this, new ArrayList<NewsStory>());
         mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mainRecyclerView.setAdapter(recyclerViewAdapter);
-        getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
-
-        mainRecyclerView.addItemDecoration(new DividerItemDecoration(this,
-                DividerItemDecoration.VERTICAL));
     }
 
     @Override
@@ -58,9 +64,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLoadFinished(android.content.Loader<List<NewsStory>> loader, List<NewsStory> data) {
         progressBar.setVisibility(View.GONE);
-        Log.i("MainActivity", "data " );
         if (data.isEmpty()) {
             mainRecyclerView.setVisibility(View.GONE);
+            emptyTextView.setText(R.string.message_noDataReturned);
             emptyTextView.setVisibility(View.VISIBLE);
         }
         else {

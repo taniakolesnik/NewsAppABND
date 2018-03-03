@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="messagesTextSize">30sp</dimen>
+    <dimen name="regularTextSizeLarge">20sp</dimen>
+    <dimen name="regularTextSizeMedium">16sp</dimen>
+    <dimen name="regularTextSizeSmall">14sp</dimen>
+    <dimen name="paddingStandard">16dp</dimen>
+    <dimen name="dividerHeight">8dp</dimen>
+</resources>

@@ -2,26 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/paddingStandard"
+    android:paddingRight="@dimen/paddingStandard">
 
     <TextView
         android:id="@+id/date_textView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/regularTextSizeSmall"/>
 
     <TextView
         android:id="@+id/section_textView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
-    
+        android:layout_weight="1"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/regularTextSizeMedium" />
 
     <TextView
         android:id="@+id/title_textView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/regularTextSizeLarge"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/colorPrimaryDark" />
 
 </LinearLayout>

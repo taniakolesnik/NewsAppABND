@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">News App ABND</string>
-    <string name="test_value">Test Value</string>
+    <string name="message_noInternetConnection">No Internet connection.</string>
+    <string name="message_noDataReturned">No data returned.</string>
+
+    <string name="json_response_object">response</string>
+    <string name="json_response_results_array">results</string>
+    <string name="json_response_webTitle">webTitle</string>
+    <string name="json_response_sectionName">sectionName</string>
+    <string name="json_response_webPublicationDate">webPublicationDate</string>
+    response
+
 </resources>

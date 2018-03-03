@@ -2,6 +2,7 @@ package com.example.android.newsappabnd;
 
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -27,7 +28,7 @@ public class FetchNews {
     public static final String LOG_TAG = FetchNews.class.getName();
     private FetchNews() {}
 
-    public static List<NewsStory> fetchNewsData (String urlString){
+    public static List<NewsStory> fetchNewsData (String urlString, Context context){
 
         try {
             Thread.sleep(3000);
@@ -43,7 +44,7 @@ public class FetchNews {
         catch (IOException e) {
             e.printStackTrace();
         }
-        List<NewsStory> news = extractNewsFromJson(jsonReply);
+        List<NewsStory> news = extractNewsFromJson(jsonReply, context);
         return news;
     }
 
@@ -93,18 +94,19 @@ public class FetchNews {
         return jsonReply;
     }
 
-    private static List<NewsStory> extractNewsFromJson(String jsonReply) {
+    private static List<NewsStory> extractNewsFromJson(String jsonReply, Context context) {
         ArrayList<NewsStory> news = new ArrayList<>();
+
 
         try {
             JSONObject jsonObject = new JSONObject(jsonReply);
-            JSONObject rootJsonObject = jsonObject.getJSONObject("response");
-            JSONArray resultsJsonArray = rootJsonObject.getJSONArray("results");
+            JSONObject rootJsonObject = jsonObject.getJSONObject(context.getResources().getString(R.string.json_response_object));
+            JSONArray resultsJsonArray = rootJsonObject.getJSONArray(context.getResources().getString(R.string.json_response_results_array));
             for (int i = 0; i < resultsJsonArray.length(); i++){
                 JSONObject newsItem = resultsJsonArray.getJSONObject(i);
-                String webTitle = newsItem.getString("webTitle");
-                String sectionName = newsItem.getString("sectionName");
-                String webPublicationDate = newsItem.getString("webPublicationDate");
+                String webTitle = newsItem.getString(context.getResources().getString(R.string.json_response_webTitle));
+                String sectionName = newsItem.getString(context.getResources().getString(R.string.json_response_sectionName));
+                String webPublicationDate = newsItem.getString(context.getResources().getString(R.string.json_response_webPublicationDate));
                 if (webPublicationDate == null) {
                     webPublicationDate = "";
                 }
