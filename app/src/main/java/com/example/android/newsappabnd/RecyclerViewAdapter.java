@@ -18,10 +18,7 @@ import butterknife.ButterKnife;
  * Created by tetianakolesnik on 25/02/2018.
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
-
-    public static final String LOG_TAG = RecyclerViewAdapter.class.getName();
-
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private LayoutInflater layoutInflater;
     private List<NewsStory> mData;
@@ -31,18 +28,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mData = data;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.row_text_view) TextView textView;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
+    public void updateAdapter(List<NewsStory> mData) {
+        this.mData = mData;
+        notifyDataSetChanged();
     }
 
     /**
-     This method is called right when the adapter is created and
-     is used to initialize your ViewHolder(s).
+     * This method is called right when the adapter is created and
+     * is used to initialize your ViewHolder(s).
+     *
      * @return new ViewHolder
      */
 
@@ -53,8 +47,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     /**
-    This method is called for each ViewHolder to bind it to the adapter.
-    This is where we will pass our data to our ViewHolder.
+     * This method is called for each ViewHolder to bind it to the adapter.
+     * This is where we will pass our data to our ViewHolder.
      */
 
     @Override
@@ -65,6 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     /**
      * This method returns the size of the collection that contains the items we want to display
+     *
      * @return number of items to be listed
      */
     @Override
@@ -72,6 +67,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mData.size();
     }
 
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.row_text_view)
+        TextView textView;
 
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
 }
 

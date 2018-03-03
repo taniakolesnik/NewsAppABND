@@ -24,12 +24,7 @@ import java.util.List;
 
 public class FetchNews {
 
-    public static final String LOG_TAG = FetchNews.class.getName();
-
-    private FetchNews()
-    {
-
-    }
+    private FetchNews() {}
 
     public static List<NewsStory> fetchNewsData (String urlString){
         String jsonReply = "";
@@ -41,7 +36,6 @@ public class FetchNews {
             e.printStackTrace();
         }
         List<NewsStory> news = extractNewsFromJson(jsonReply);
-
         return news;
     }
 
@@ -87,7 +81,6 @@ public class FetchNews {
                     e.printStackTrace();
                 }
             }
-
         }
         return jsonReply;
     }
@@ -107,10 +100,8 @@ public class FetchNews {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.i(LOG_TAG, "news " + news);
         return news;
     }
-
 
     private static String readFromInput(InputStream inputStream) throws IOException{
         StringBuilder stringBuilder = new StringBuilder();
@@ -123,7 +114,6 @@ public class FetchNews {
                 line = bufferedReader.readLine();
             }
         }
-
         return stringBuilder.toString();
     }
 

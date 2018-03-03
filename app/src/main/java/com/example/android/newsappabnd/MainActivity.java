@@ -19,13 +19,11 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<NewsStory>> {
 
-    public static final String LOG_TAG = MainActivity.class.getName();
-
     public static final String GUARDIAN_API_LINK = "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test";
     RecyclerViewAdapter recyclerViewAdapter;
     public static final int LOADER_ID = 1;
 
-            @BindView(R.id.main_RecyclerView) RecyclerView mainRecyclerView;
+     @BindView(R.id.main_RecyclerView) RecyclerView mainRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +41,12 @@ public class MainActivity extends AppCompatActivity
     public Loader<List<NewsStory>> onCreateLoader(int id, Bundle args) {
         Uri baseUrl = Uri.parse(GUARDIAN_API_LINK);
         Uri.Builder builder = baseUrl.buildUpon();
-        Log.i(LOG_TAG, "onCreateLoader ");
         return new NewsLoader(this, builder.toString());
     }
 
     @Override
     public void onLoadFinished(android.content.Loader<List<NewsStory>> loader, List<NewsStory> data) {
-        Log.i(LOG_TAG, "onLoadFinished ");
-        recyclerViewAdapter.notifyDataSetChanged();
+        recyclerViewAdapter.updateAdapter(data);
     }
 
     @Override

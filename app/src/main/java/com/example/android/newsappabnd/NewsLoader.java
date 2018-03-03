@@ -12,8 +12,6 @@ import java.util.List;
 
 public class NewsLoader extends AsyncTaskLoader<List<NewsStory>> {
 
-    public static final String LOG_TAG = NewsLoader.class.getName();
-
     private String mUrl;
 
     public NewsLoader(Context context, String mUrl) {
@@ -27,12 +25,16 @@ public class NewsLoader extends AsyncTaskLoader<List<NewsStory>> {
     }
 
     @Override
+    protected void onStopLoading() {
+        cancelLoad();
+    }
+
+    @Override
     public List<NewsStory> loadInBackground() {
         if (mUrl == null) {
             return null;
         }
         List<NewsStory> news = FetchNews.fetchNewsData(mUrl);
-        Log.i(LOG_TAG, "news " + news);
         return news;
     }
 }
