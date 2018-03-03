@@ -24,6 +24,7 @@ import java.util.List;
 
 public class FetchNews {
 
+    public static final String LOG_TAG = FetchNews.class.getName();
     private FetchNews() {}
 
     public static List<NewsStory> fetchNewsData (String urlString){
@@ -95,7 +96,9 @@ public class FetchNews {
             for (int i = 0; i < resultsJsonArray.length(); i++){
                 JSONObject newsItem = resultsJsonArray.getJSONObject(i);
                 String webTitle = newsItem.getString("webTitle");
-                news.add(new NewsStory(webTitle));
+                String sectionName = newsItem.getString("sectionName");
+                Log.i(LOG_TAG, "webTitle :" + webTitle + "  sectionName :" + sectionName);
+                news.add(new NewsStory(webTitle, sectionName));
             }
         } catch (JSONException e) {
             e.printStackTrace();

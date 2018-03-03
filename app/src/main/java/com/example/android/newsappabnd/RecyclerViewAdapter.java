@@ -54,7 +54,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
         NewsStory item = mData.get(position);
-        holder.textView.setText(item.getNewsStory());
+        holder.titleTextView.setText(item.getNewsStory());
+        holder.sectionTextView.setText(item.getSectionName());
     }
 
     /**
@@ -68,8 +69,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.row_text_view)
-        TextView textView;
+        @BindView(R.id.title_textView) TextView titleTextView;
+        @BindView(R.id.section_textView) TextView sectionTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);

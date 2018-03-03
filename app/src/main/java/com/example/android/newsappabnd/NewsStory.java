@@ -7,23 +7,33 @@ package com.example.android.newsappabnd;
 public class NewsStory {
 
     private String mNewsStory;
+    private String mSectionName;
 
-    public NewsStory(String mNewsStory) {
+    public NewsStory(String mNewsStory, String mSectionName) {
         setStory(mNewsStory);
+        setSectionName(mSectionName);
     }
     public String getNewsStory() {
         return this.mNewsStory;
+    }
+
+    public String getSectionName() {
+        return this.mSectionName;
     }
 
     public void setStory(String mNewsStory) {
         this.mNewsStory = mNewsStory;
     }
 
+    public void setSectionName(String mSectionName) {
+        this.mSectionName = mSectionName;
+    }
+
     @Override
     public String toString() {
         return "NewsStory{" +
                 "mNewsStory='" + this.mNewsStory + '\'' +
+                "mSectionName='" + this.mSectionName + '\'' +
                 '}';
     }
-
 }
