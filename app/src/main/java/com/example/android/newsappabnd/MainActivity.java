@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity
      @BindView(R.id.main_emptyTextView) TextView emptyTextView;
 
      //TODO add network check before lunching loader
-     //TODO add EmptyScreen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

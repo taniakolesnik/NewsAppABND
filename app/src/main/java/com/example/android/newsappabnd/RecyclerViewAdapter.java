@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,6 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         NewsStory item = mData.get(position);
         holder.titleTextView.setText(item.getNewsStory());
         holder.sectionTextView.setText(item.getSectionName());
+        holder.dateTextView.setText(item.getPublicationDate());
     }
 
     /**
@@ -71,11 +75,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.title_textView) TextView titleTextView;
         @BindView(R.id.section_textView) TextView sectionTextView;
+        @BindView(R.id.date_textView) TextView dateTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
+
+
 }
 

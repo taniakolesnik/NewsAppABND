@@ -104,8 +104,11 @@ public class FetchNews {
                 JSONObject newsItem = resultsJsonArray.getJSONObject(i);
                 String webTitle = newsItem.getString("webTitle");
                 String sectionName = newsItem.getString("sectionName");
-                Log.i(LOG_TAG, "webTitle :" + webTitle + "  sectionName :" + sectionName);
-                news.add(new NewsStory(webTitle, sectionName));
+                String webPublicationDate = newsItem.getString("webPublicationDate");
+                if (webPublicationDate == null) {
+                    webPublicationDate = "";
+                }
+                news.add(new NewsStory(webTitle, sectionName, webPublicationDate));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -126,7 +129,6 @@ public class FetchNews {
         }
         return stringBuilder.toString();
     }
-
 
 }
 
