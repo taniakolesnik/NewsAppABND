@@ -8,13 +8,11 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +22,11 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<NewsStory>> {
 
-    public static final String GUARDIAN_API_LINK = "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test";
-    RecyclerViewAdapter recyclerViewAdapter;
+    public static final String GUARDIAN_API_LINK = "http://content.guardianapis.com/search?q=debates&section=politics&show-tags=contributor&api-key=test";
+    NewsRecyclerViewAdapter newsRecyclerViewAdapter;
     public static final int LOADER_ID = 1;
 
-     @BindView(R.id.main_RecyclerView) RecyclerView mainRecyclerView;
+     @BindView(R.id.main_RecyclerView) RecyclerView newsRecyclerView;
      @BindView(R.id.main_ProgressBar) ProgressBar progressBar;
      @BindView(R.id.main_emptyTextView) TextView emptyTextView;
 
@@ -49,9 +47,9 @@ public class MainActivity extends AppCompatActivity
                 emptyTextView.setVisibility(View.VISIBLE);
             }
 
-        recyclerViewAdapter = new RecyclerViewAdapter(this, new ArrayList<NewsStory>());
-        mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mainRecyclerView.setAdapter(recyclerViewAdapter);
+        newsRecyclerViewAdapter = new NewsRecyclerViewAdapter(this, new ArrayList<NewsStory>());
+        newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        newsRecyclerView.setAdapter(newsRecyclerViewAdapter);
     }
 
     @Override
@@ -64,19 +62,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLoadFinished(android.content.Loader<List<NewsStory>> loader, List<NewsStory> data) {
         progressBar.setVisibility(View.GONE);
-        if (data.isEmpty()) {
-            mainRecyclerView.setVisibility(View.GONE);
+        if (data == null && data.isEmpty()) {
+            newsRecyclerView.setVisibility(View.GONE);
             emptyTextView.setText(R.string.message_noDataReturned);
             emptyTextView.setVisibility(View.VISIBLE);
         }
         else {
-            recyclerViewAdapter.updateAdapter(data);
+            newsRecyclerViewAdapter.updateAdapter(data);
         }
     }
 
     @Override
     public void onLoaderReset(android.content.Loader<List<NewsStory>> loader) {
-        mainRecyclerView.setAdapter(null);
+        newsRecyclerView.setAdapter(null);
     }
 
 }

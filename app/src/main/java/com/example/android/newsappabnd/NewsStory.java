@@ -15,11 +15,13 @@ public class NewsStory {
     private String mNewsStory;
     private String mSectionName;
     private String mPublicationDate;
+    private String mAuthor;
 
-    public NewsStory(String mNewsStory, String mSectionName, String mPublicationDate) {
+    public NewsStory(String mNewsStory, String mSectionName, String mPublicationDate, String mAuthor) {
         setStory(mNewsStory);
         setSectionName(mSectionName);
         setPublicationDate(mPublicationDate);
+        setAuthor(mAuthor);
     }
     public String getNewsStory() {
         return this.mNewsStory;
@@ -31,6 +33,10 @@ public class NewsStory {
 
     public String getPublicationDate() {
         return this.mPublicationDate;
+    }
+
+    public String getAuthor() {
+        return this.mAuthor;
     }
 
     public void setStory(String mNewsStory) {
@@ -45,12 +51,17 @@ public class NewsStory {
         this.mPublicationDate = formatDate(mPublicationDate);
     }
 
+    public void setAuthor(String mAuthor) {
+        this.mAuthor = mAuthor;
+    }
+
     @Override
     public String toString() {
         return "NewsStory{" +
                 "mNewsStory='" + this.mNewsStory + '\'' +
                 "mSectionName='" + this.mSectionName + '\'' +
                 "mPublicationDate='" + this.mPublicationDate + '\'' +
+                "mAuthor='" + this.mAuthor + '\'' +
                 '}';
     }
 

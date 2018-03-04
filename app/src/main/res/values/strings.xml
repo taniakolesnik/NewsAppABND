@@ -8,6 +8,7 @@
     <string name="json_response_webTitle">webTitle</string>
     <string name="json_response_sectionName">sectionName</string>
     <string name="json_response_webPublicationDate">webPublicationDate</string>
-    response
+    <string name="json_response_tagsArray">tags</string>
+    <string name="json_response_tagsWebTitle">webTitle</string>
 
 </resources>

@@ -1,9 +1,7 @@
 package com.example.android.newsappabnd;
 
 
-import android.app.LoaderManager;
 import android.content.Context;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,10 +21,10 @@ import java.util.List;
  * Created by tetianakolesnik on 01/03/2018.
  */
 
-public class FetchNews {
+public class NewsUtil {
 
-    public static final String LOG_TAG = FetchNews.class.getName();
-    private FetchNews() {}
+    public static final String LOG_TAG = NewsUtil.class.getName();
+    private NewsUtil() {}
 
     public static List<NewsStory> fetchNewsData (String urlString, Context context){
 
@@ -96,6 +94,7 @@ public class FetchNews {
 
     private static List<NewsStory> extractNewsFromJson(String jsonReply, Context context) {
         ArrayList<NewsStory> news = new ArrayList<>();
+        String author;
 
 
         try {
@@ -107,10 +106,23 @@ public class FetchNews {
                 String webTitle = newsItem.getString(context.getResources().getString(R.string.json_response_webTitle));
                 String sectionName = newsItem.getString(context.getResources().getString(R.string.json_response_sectionName));
                 String webPublicationDate = newsItem.getString(context.getResources().getString(R.string.json_response_webPublicationDate));
+                try {
+                    JSONArray tagsArray = newsItem.getJSONArray(context.getResources().getString(R.string.json_response_tagsArray));
+                    JSONObject tags = tagsArray.getJSONObject(0);
+                    author = tags.getString(context.getResources().getString(R.string.json_response_tagsWebTitle));
+                    if (author == null) {
+                        author = "";
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    author = "";
+                }
+
                 if (webPublicationDate == null) {
                     webPublicationDate = "";
                 }
-                news.add(new NewsStory(webTitle, sectionName, webPublicationDate));
+
+                news.add(new NewsStory(webTitle, sectionName, webPublicationDate, author));
             }
         } catch (JSONException e) {
             e.printStackTrace();
