@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.net.URL;
 import java.util.List;
@@ -23,6 +24,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     private LayoutInflater layoutInflater;
     private List<NewsStory> mData;
+    private String webLink;
 
     public NewsRecyclerViewAdapter(Context context, List<NewsStory> data) {
         this.layoutInflater = LayoutInflater.from(context);
@@ -43,7 +45,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.row_layout, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, webLink);
     }
 
     /**
@@ -55,11 +57,13 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         NewsStory item = mData.get(position);
         holder.titleTextView.setText(item.getNewsStory());
         holder.sectionTextView.setText(item.getSectionName());
-        holder.dateTextView.setText(item.getPublicationDate());
+        holder.dateTextView.setText(item.getWebUrl());
         if (!item.getAuthor().isEmpty()){
             holder.authorTextView.setText(item.getAuthor());
             holder.authorTextView.setVisibility(View.VISIBLE);
         }
+        webLink = item.getWebUrl();
+
     }
 
     /**
@@ -71,15 +75,23 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         return mData.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public String webLink;
         @BindView(R.id.title_textView) TextView titleTextView;
         @BindView(R.id.section_textView) TextView sectionTextView;
         @BindView(R.id.date_textView) TextView dateTextView;
         @BindView(R.id.author_textView) TextView authorTextView;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, String webLink) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+            this.webLink = webLink;
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), webLink + " position = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
         }
     }
 }

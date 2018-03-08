@@ -16,12 +16,16 @@ public class NewsStory {
     private String mSectionName;
     private String mPublicationDate;
     private String mAuthor;
+    private String mWebUrl;
 
-    public NewsStory(String mNewsStory, String mSectionName, String mPublicationDate, String mAuthor) {
+
+    public NewsStory(String mNewsStory, String mSectionName, String mPublicationDate, String mAuthor,
+                     String webUrl) {
         setStory(mNewsStory);
         setSectionName(mSectionName);
         setPublicationDate(mPublicationDate);
         setAuthor(mAuthor);
+        setWebUrl(webUrl);
     }
     public String getNewsStory() {
         return this.mNewsStory;
@@ -39,6 +43,11 @@ public class NewsStory {
         return this.mAuthor;
     }
 
+    public String getWebUrl() {
+        return this.mWebUrl;
+    }
+
+
     public void setStory(String mNewsStory) {
         this.mNewsStory = mNewsStory;
     }
@@ -55,6 +64,10 @@ public class NewsStory {
         this.mAuthor = mAuthor;
     }
 
+    public void setWebUrl(String mWebUrl) {
+        this.mWebUrl = mWebUrl;
+    }
+
     @Override
     public String toString() {
         return "NewsStory{" +
@@ -62,6 +75,7 @@ public class NewsStory {
                 "mSectionName='" + this.mSectionName + '\'' +
                 "mPublicationDate='" + this.mPublicationDate + '\'' +
                 "mAuthor='" + this.mAuthor + '\'' +
+                "mWebUrl='" + this.mWebUrl + '\'' +
                 '}';
     }
 

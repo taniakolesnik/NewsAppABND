@@ -10,5 +10,6 @@
     <string name="json_response_webPublicationDate">webPublicationDate</string>
     <string name="json_response_tagsArray">tags</string>
     <string name="json_response_tagsWebTitle">webTitle</string>
+    <string name="json_response_webUrl">webUrl</string>
 
 </resources>

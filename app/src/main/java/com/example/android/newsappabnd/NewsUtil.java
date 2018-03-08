@@ -104,6 +104,7 @@ public class NewsUtil {
             for (int i = 0; i < resultsJsonArray.length(); i++){
                 JSONObject newsItem = resultsJsonArray.getJSONObject(i);
                 String webTitle = newsItem.getString(context.getResources().getString(R.string.json_response_webTitle));
+                String webUrl = newsItem.getString(context.getResources().getString(R.string.json_response_webUrl));
                 String sectionName = newsItem.getString(context.getResources().getString(R.string.json_response_sectionName));
                 String webPublicationDate = newsItem.getString(context.getResources().getString(R.string.json_response_webPublicationDate));
                 try {
@@ -122,7 +123,7 @@ public class NewsUtil {
                     webPublicationDate = "";
                 }
 
-                news.add(new NewsStory(webTitle, sectionName, webPublicationDate, author));
+                news.add(new NewsStory(webTitle, sectionName, webPublicationDate, author, webUrl));
             }
         } catch (JSONException e) {
             e.printStackTrace();
