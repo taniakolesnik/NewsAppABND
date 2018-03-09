@@ -22,7 +22,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<NewsStory>> {
 
-    public static final String GUARDIAN_API_LINK = "http://content.guardianapis.com/search?q=debates&section=politics&show-tags=contributor&api-key=test";
+    public static final String GUARDIAN_API_LINK = "" +
+            "http://content.guardianapis.com/search?q=debates&section=politics&show-tags=contributor&api-key=test";
     NewsRecyclerViewAdapter newsRecyclerViewAdapter;
     public static final int LOADER_ID = 1;
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLoadFinished(android.content.Loader<List<NewsStory>> loader, List<NewsStory> data) {
         progressBar.setVisibility(View.GONE);
-        if (data == null && data.isEmpty()) {
+        if (data == null || data.isEmpty()) {
             newsRecyclerView.setVisibility(View.GONE);
             emptyTextView.setText(R.string.message_noDataReturned);
             emptyTextView.setVisibility(View.VISIBLE);

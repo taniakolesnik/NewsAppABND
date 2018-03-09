@@ -25,7 +25,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     Context context;
     private LayoutInflater layoutInflater;
-    private List<NewsStory> data = Collections.emptyList();
+    private List<NewsStory> data;
 
     public NewsRecyclerViewAdapter(Context context, List<NewsStory> data) {
         this.context = context;

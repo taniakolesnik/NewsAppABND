@@ -47,7 +47,7 @@ public class NewsUtil {
     }
 
     private static URL createURL(String mUrl) {
-        URL url = null;
+        URL url;
         try {
             url = new URL(mUrl);
         } catch (MalformedURLException e) {
@@ -96,7 +96,6 @@ public class NewsUtil {
         ArrayList<NewsStory> news = new ArrayList<>();
         String author;
 
-
         try {
             JSONObject jsonObject = new JSONObject(jsonReply);
             JSONObject rootJsonObject = jsonObject.getJSONObject(context.getResources().getString(R.string.json_response_object));
@@ -111,18 +110,9 @@ public class NewsUtil {
                     JSONArray tagsArray = newsItem.getJSONArray(context.getResources().getString(R.string.json_response_tagsArray));
                     JSONObject tags = tagsArray.getJSONObject(0);
                     author = tags.getString(context.getResources().getString(R.string.json_response_tagsWebTitle));
-                    if (author == null) {
-                        author = "";
-                    }
                 } catch (JSONException e) {
-                    e.printStackTrace();
                     author = "";
                 }
-
-                if (webPublicationDate == null) {
-                    webPublicationDate = "";
-                }
-
                 news.add(new NewsStory(webTitle, sectionName, webPublicationDate, author, webUrl));
             }
         } catch (JSONException e) {
