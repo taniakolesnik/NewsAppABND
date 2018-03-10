@@ -4,7 +4,10 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingLeft="@dimen/paddingStandard"
-    android:paddingRight="@dimen/paddingStandard">
+    android:paddingRight="@dimen/paddingStandard"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/date_textView"
