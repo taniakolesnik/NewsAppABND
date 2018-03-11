@@ -20,7 +20,7 @@
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">News Search Settings</string>
 
-    <string name="settings_date_label">Date</string>
+    <string name="settings_date_label">Date (yyyy-MM-dd)</string>
     <string name="settings_date_key" translatable="false">date_key</string>
     <string name="settings_date_default" translatable="false">2016-10-10</string>
 
@@ -28,8 +28,15 @@
     <string name="settings_tag_key" translatable="false">tag_key</string>
     <string name="settings_tag_default" translatable="false">society</string>
 
-    <string name="tag_politics" translatable="false">politics</string>
-    <string name="tag_society" translatable="false">society</string>
-    <string name="tag_opinion" translatable="false">opinion</string>
+    <string name="tag_politics">Politics</string>
+    <string name="tag_society">Society</string>
+    <string name="tag_all">All</string>
+
+    <string name="query_section">section</string>
+    <string name="query_from_date">from-date</string>
+    <string name="query_order_by">order-by</string>
+    <string name="query_order_by_default">oldest</string>
+    <string name="query_api_key">api-key</string>
+    <string name="query_api_key_default">test</string>
 
 </resources>

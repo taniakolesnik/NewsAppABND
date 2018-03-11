@@ -4,14 +4,17 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity
     public static final String LOG_TAG = MainActivity.class.getName();
 
     public static final String GUARDIAN_API_LINK =
-            "http://content.guardianapis.com/search?q=debates&section=politics&show-tags=contributor&api-key=test";
+            "http://content.guardianapis.com/search";
     NewsRecyclerViewAdapter newsRecyclerViewAdapter;
     public static final int LOADER_ID = 1;
 
@@ -89,9 +92,29 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public Loader<List<NewsStory>> onCreateLoader(int id, Bundle args) {
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String tag = sharedPreferences.getString(
+                getString(R.string.settings_tag_key),
+                getString(R.string.settings_tag_default));
+
+        String date = sharedPreferences.getString(
+                getString(R.string.settings_date_key),
+                getString(R.string.settings_date_default));
+
+
         Uri baseUrl = Uri.parse(GUARDIAN_API_LINK);
         Uri.Builder builder = baseUrl.buildUpon();
+        if (!TextUtils.equals(String.valueOf(tag), getString(R.string.tag_all) )) {
+            builder.appendQueryParameter(getString(R.string.query_section), tag.toLowerCase());
+        }
+        builder.appendQueryParameter(getString(R.string.query_from_date), date);
+        builder.appendQueryParameter(getString(R.string.query_order_by), getString(R.string.query_order_by_default));
+        builder.appendQueryParameter(getString(R.string.query_api_key), getString(R.string.query_api_key_default));
+        Log.i(LOG_TAG, "Link" + builder.toString());
+
         return new NewsLoader(this, builder.toString());
+
     }
 
     @Override
