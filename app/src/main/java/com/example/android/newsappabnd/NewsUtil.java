@@ -28,12 +28,6 @@ public class NewsUtil {
 
     public static List<NewsStory> fetchNewsData (String urlString, Context context){
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         String jsonReply = "";
         URL url = createURL(urlString);
         try {
@@ -74,6 +68,8 @@ public class NewsUtil {
             if (httpURLConnection.getResponseCode() == 200) {
                 inputStream = httpURLConnection.getInputStream();
                 jsonReply = readFromInput(inputStream);
+            } else {
+                inputStream = httpURLConnection.getErrorStream();
             }
         } catch (IOException e) {
             e.printStackTrace();

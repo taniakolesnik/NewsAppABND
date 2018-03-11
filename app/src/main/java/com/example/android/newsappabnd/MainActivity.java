@@ -2,14 +2,19 @@ package com.example.android.newsappabnd;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,7 +27,9 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<NewsStory>> {
 
-    public static final String GUARDIAN_API_LINK = "" +
+    public static final String LOG_TAG = MainActivity.class.getName();
+
+    public static final String GUARDIAN_API_LINK =
             "http://content.guardianapis.com/search?q=debates&section=politics&show-tags=contributor&api-key=test";
     NewsRecyclerViewAdapter newsRecyclerViewAdapter;
     public static final int LOADER_ID = 1;
@@ -51,6 +58,33 @@ public class MainActivity extends AppCompatActivity
         newsRecyclerViewAdapter = new NewsRecyclerViewAdapter(this, new ArrayList<NewsStory>());
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         newsRecyclerView.setAdapter(newsRecyclerViewAdapter);
+
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        newsRecyclerView.setItemAnimator(itemAnimator);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_menu) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.about_menu) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

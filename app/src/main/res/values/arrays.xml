@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Tags">
+        <item>@string/tag_opinion</item>
+        <item>@string/tag_society</item>
+        <item>@string/tag_politics</item>
+    </string-array>
+
+</resources>

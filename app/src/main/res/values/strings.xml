@@ -12,4 +12,24 @@
     <string name="json_response_tagsWebTitle">webTitle</string>
     <string name="json_response_webUrl">webUrl</string>
 
+    <string name="about_menu_item">About</string>
+    <string name="about_title">About this app</string>
+    <string name="about_version">Version: Demo v1</string>
+    <string name="about_createdBy">Created by Tetiana \"Tania\" Kolesnik</string>
+
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">News Search Settings</string>
+
+    <string name="settings_date_label">Date</string>
+    <string name="settings_date_key" translatable="false">date_key</string>
+    <string name="settings_date_default" translatable="false">2016-10-10</string>
+
+    <string name="settings_tag_label">Tag</string>
+    <string name="settings_tag_key" translatable="false">tag_key</string>
+    <string name="settings_tag_default" translatable="false">society</string>
+
+    <string name="tag_politics" translatable="false">politics</string>
+    <string name="tag_society" translatable="false">society</string>
+    <string name="tag_opinion" translatable="false">opinion</string>
+
 </resources>
