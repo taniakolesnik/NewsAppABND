@@ -15,7 +15,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,14 +22,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<NewsStory>> {
-
-    public static final String LOG_TAG = MainActivity.class.getName();
 
     public static final String GUARDIAN_API_LINK =
             "http://content.guardianapis.com/search";
@@ -66,7 +62,6 @@ public class MainActivity extends AppCompatActivity
         itemAnimator.setAddDuration(1000);
         itemAnimator.setRemoveDuration(1000);
         newsRecyclerView.setItemAnimator(itemAnimator);
-
     }
 
     @Override
@@ -97,12 +92,9 @@ public class MainActivity extends AppCompatActivity
         String tag = sharedPreferences.getString(
                 getString(R.string.settings_tag_key),
                 getString(R.string.settings_tag_default));
-
         String date = sharedPreferences.getString(
                 getString(R.string.settings_date_key),
                 getString(R.string.settings_date_default));
-
-
         Uri baseUrl = Uri.parse(GUARDIAN_API_LINK);
         Uri.Builder builder = baseUrl.buildUpon();
         if (!TextUtils.equals(String.valueOf(tag), getString(R.string.tag_all) )) {
@@ -111,10 +103,7 @@ public class MainActivity extends AppCompatActivity
         builder.appendQueryParameter(getString(R.string.query_from_date), date);
         builder.appendQueryParameter(getString(R.string.query_order_by), getString(R.string.query_order_by_default));
         builder.appendQueryParameter(getString(R.string.query_api_key), getString(R.string.query_api_key_default));
-        Log.i(LOG_TAG, "Link" + builder.toString());
-
         return new NewsLoader(this, builder.toString());
-
     }
 
     @Override

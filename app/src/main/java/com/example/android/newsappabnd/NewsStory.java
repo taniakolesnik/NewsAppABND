@@ -1,6 +1,5 @@
 package com.example.android.newsappabnd;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,7 +45,6 @@ public class NewsStory {
     public String getWebUrl() {
         return this.mWebUrl;
     }
-
 
     public void setStory(String mNewsStory) {
         this.mNewsStory = mNewsStory;
